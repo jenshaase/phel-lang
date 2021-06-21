@@ -34,6 +34,7 @@ final class ReplCommand extends Command
     /** @var string[] */
     private array $inputBuffer = [];
     private int $lineNumber = 1;
+    private InputResult $previousResult;
 
     public function __construct(
         RuntimeFacadeInterface $runtimeFacade,
@@ -48,6 +49,7 @@ final class ReplCommand extends Command
         $this->compilerFacade = $compilerFacade;
         $this->style = $style;
         $this->printer = $printer;
+        $this->previousResult = InputResult::empty();
     }
 
     protected function configure(): void
@@ -138,10 +140,12 @@ final class ReplCommand extends Command
             return;
         }
 
-        $fullInput = implode(PHP_EOL, $this->inputBuffer);
+        $fullInput = $this->previousResult->readBuffer($this->inputBuffer);
 
         try {
             $result = $this->compilerFacade->eval($fullInput, $this->lineNumber - count($this->inputBuffer));
+            $this->previousResult = InputResult::fromAny($result);
+
             $this->addHistory($fullInput);
             $this->io->writeln($this->printer->print($result));
 
