@@ -1,0 +1,8 @@
+(ns tests-phpbench\Command\fixtures\test-command
+  (:require phel\test :refer [deftest is]))
+
+(deftest my-working-test
+  (is (true? true)))
+
+(deftest my-failing-test
+  (is (true? false)))

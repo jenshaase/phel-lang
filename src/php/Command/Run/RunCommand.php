@@ -60,7 +60,7 @@ final class RunCommand extends Command
         return $this;
     }
 
-    public function execute(InputInterface $input, OutputInterface $output): int
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         try {
             /** @var string $fileOrPath */

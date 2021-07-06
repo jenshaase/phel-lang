@@ -1,0 +1,12 @@
+(ns tests-phpbench\Command\fixtures\run-command)
+
+(defn my-adder-function
+  [a b]
+  (+ a b))
+
+(def result (str "(4 + 5) = " (my-adder-function 4 5)))
+
+(php/ob_start)
+(print "Hello, ")
+(println "World!")
+(php/ob_clean)

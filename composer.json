@@ -54,6 +54,9 @@
         "psalm": "./vendor/bin/psalm --no-cache",
         "csfix": "./vendor/bin/php-cs-fixer fix --allow-risky=yes",
         "csrun": "./vendor/bin/php-cs-fixer fix --allow-risky=yes --dry-run",
+        "phpbench": "vendor/bin/phpbench run --report=aggregate --ansi",
+        "phpbench-base": "vendor/bin/phpbench run --tag=baseline --report=aggregate --progress=plain --ansi",
+        "phpbench-ref": "vendor/bin/phpbench run --ref=baseline --report=aggregate --progress=plain --ansi",
         "metrics-report": "./vendor/bin/phpmetrics --report-html=data/metrics-report src/php"
     },
     "bin": [
@@ -65,7 +68,8 @@
                 "phel\\": "src/phel/"
             },
             "loader-dev": {
-                "phel\\": "tests/phel/"
+                "phel\\": "tests/phel/",
+                "tests-phpbench\\": "tests/php/Benchmark/"
             },
             "tests": [
                 "tests/phel/"

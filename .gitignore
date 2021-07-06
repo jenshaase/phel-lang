@@ -9,3 +9,4 @@ src/phel/local.phel
 infection.json
 .vscode
 PhelGenerated/
+.phpbench/
